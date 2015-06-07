@@ -42,10 +42,11 @@ class site_nagios::server inherits nagios::base {
 
   # deploy serverside plugins
   file { '/usr/lib/nagios/plugins/check_openvpn_server.pl':
-    source => 'puppet:///modules/nagios/plugins/check_openvpn_server.pl',
-    mode   => '0755',
-    owner  => 'nagios',
-    group  => 'nagios',
+    source  => 'puppet:///modules/nagios/plugins/check_openvpn_server.pl',
+    mode    => '0755',
+    owner   => 'nagios',
+    group   => 'nagios',
+    require => Package['nagios-plugins-standard'];
   }
 
   create_resources ( site_nagios::add_host_services, $nagios_hosts )
