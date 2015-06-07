@@ -1,3 +1,4 @@
+# configures nagios on monitoring node
 class site_nagios::server inherits nagios::base {
 
   # First, purge old nagios config (see #1467)
@@ -46,7 +47,7 @@ class site_nagios::server inherits nagios::base {
     mode    => '0755',
     owner   => 'nagios',
     group   => 'nagios',
-    require => Package['nagios-plugins-standard'];
+    require => Package['nagios-plugins'];
   }
 
   create_resources ( site_nagios::add_host_services, $nagios_hosts )
